@@ -10,6 +10,7 @@ autopep8 = "*"
 django = "==2.2.7"
 psycopg2-binary = "==2.8.4"
 pylint = "*"
+django-crispy-forms = "==1.8.0"
 
 [requires]
 python_version = "3.8"
