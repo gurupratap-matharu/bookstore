@@ -10,7 +10,7 @@ WORKDIR /code
 
 # install requirements
 COPY Pipfile Pipfile.lock /code/
-RUN pip install pipenv && pipenv install --system
+RUN pip install pipenv && pipenv install --system --python 3.7
 
 # copy project
 COPY . /code/
