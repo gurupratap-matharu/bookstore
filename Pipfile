@@ -11,6 +11,8 @@ django = "==2.2.7"
 psycopg2-binary = "==2.8.4"
 pylint = "*"
 django-crispy-forms = "==1.8.0"
+django-allauth = "==0.40.0"
+pylint-django = "*"
 
 [requires]
 python_version = "3.8"
