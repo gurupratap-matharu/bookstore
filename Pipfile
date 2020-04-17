@@ -9,6 +9,7 @@ autopep8 = "*"
 [packages]
 django = "==2.2.7"
 psycopg2-binary = "==2.8.4"
+pylint = "*"
 
 [requires]
 python_version = "3.8"
