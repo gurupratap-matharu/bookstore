@@ -1,6 +1,6 @@
 {% extends '_base.html' %}
 {% load static %}
-
+{% load socialaccount %}
 {% block title %}Home{% endblock title %}
 
 {% block content %}
@@ -13,5 +13,6 @@
 <p>You are not logged in.</p>
 <a href="{% url 'account_login' %}">Login</a>
 <a href="{% url 'account_signup' %}">Sign Up</a>
+<a href="{% provider_login_url 'github' %}">Sign Up with github</a>
 {% endif %}
 {% endblock content %}
