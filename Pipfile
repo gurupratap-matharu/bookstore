@@ -13,6 +13,7 @@ pylint = "*"
 django-crispy-forms = "==1.8.0"
 django-allauth = "==0.40.0"
 pylint-django = "*"
+pillow = "==6.2.1"
 
 [requires]
 python_version = "3.8"
