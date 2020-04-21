@@ -15,6 +15,7 @@ django-allauth = "==0.40.0"
 pylint-django = "*"
 pillow = "==6.2.1"
 stripe = "*"
+django-debug-toolbar = "==2.0"
 
 [requires]
 python_version = "3.8"
