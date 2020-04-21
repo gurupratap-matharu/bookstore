@@ -1,5 +1,5 @@
 # pull base image
-FROM python:3.7
+FROM python:3.8.2
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -10,7 +10,7 @@ WORKDIR /code
 
 # install requirements
 COPY Pipfile Pipfile.lock /code/
-RUN pip install pipenv && pipenv install --system --python 3.7
+RUN pip install pipenv && pipenv install --system
 
 # copy project
 COPY . /code/
