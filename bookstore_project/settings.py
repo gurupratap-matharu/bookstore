@@ -175,6 +175,4 @@ STRIPE_TEST_PUBLISHABLE_KEY = os.environ.get('STRIPE_TEST_PUBLISHABLE_KEY')
 STRIPE_TEST_SECRET_KEY = os.environ.get('STRIPE_TEST_SECRET_KEY')
 
 hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
-print("veer ips=", ips)
 INTERNAL_IPS = [ip[:-1] + "1" for ip in ips]
-print("veer internal ips=", INTERNAL_IPS)
