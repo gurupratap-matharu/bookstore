@@ -5,6 +5,7 @@ services:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
     environment: 
+      - ENVIRONMENT=development
       - SECRET_KEY=nq#osk$$vggb3z756w%h8%s*as%=5pduig9h0bo7eb6yub+3=)x
       - DEBUG=1
       - STRIPE_TEST_PUBLISHABLE_KEY=pk_test_tUaWXtnixlSAbpYm0JObaU0M00DeT1dMSi
@@ -18,6 +19,8 @@ services:
   
   db:
     image: postgres
+    environment:
+      - POSTGRES_PASSWORD=postgres
     volumes:
       - postgres_data:/var/lib/postgresql/data/
 
