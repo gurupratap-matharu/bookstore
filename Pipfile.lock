@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "630853cb9b39751a034d0d2d65fee563aee8c6011fba10e35345444a18430a3e"
+            "sha256": "8033f53cde260998ed52346e8151afe111c76265787715a170951cb9edc80b6d"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -44,6 +44,14 @@
             ],
             "version": "==0.6.0"
         },
+        "dj-database-url": {
+            "hashes": [
+                "sha256:4aeaeb1f573c74835b0686a2b46b85990571159ffc21aa57ecd4d1e1cb334163",
+                "sha256:851785365761ebe4994a921b433062309eb882fedd318e1b0fcecc607ed02da9"
+            ],
+            "index": "pypi",
+            "version": "==0.5.0"
+        },
         "django": {
             "hashes": [
                 "sha256:16040e1288c6c9f68c6da2fe75ebde83c0a158f6f5d54f4c5177b0c1478c5b86",
@@ -74,6 +82,14 @@
             ],
             "index": "pypi",
             "version": "==2.0"
+        },
+        "gunicorn": {
+            "hashes": [
+                "sha256:aa8e0b40b4157b36a5df5e599f45c9c76d6af43845ba3b3b0efe2c70473c2471",
+                "sha256:fa2662097c66f920f53f70621c6c58ca4a3c4d3434205e608e121b5b3b71f4f3"
+            ],
+            "index": "pypi",
+            "version": "==19.9.0"
         },
         "idna": {
             "hashes": [
@@ -271,11 +287,11 @@
         },
         "stripe": {
             "hashes": [
-                "sha256:2592aa78aa8fbd2c7b892edd9eb0b5dd987df60000e156b1fe395c44ac46f1c0",
-                "sha256:8382f1429487ba641e9d8348db32c1d7b235b7de9129f235a668eef2131147fa"
+                "sha256:1ac03a281f77bffc248f455207d89c4e01ca5057384abb9fd54a45242c578bef",
+                "sha256:cdb27e83b8234d6f0a1ca89df6162a033ff673642bf427d707f4f82601342416"
             ],
             "index": "pypi",
-            "version": "==2.45.0"
+            "version": "==2.46.0"
         },
         "urllib3": {
             "hashes": [
@@ -283,6 +299,14 @@
                 "sha256:88206b0eb87e6d677d424843ac5209e3fb9d0190d0ee169599165ec25e9d9115"
             ],
             "version": "==1.25.9"
+        },
+        "whitenoise": {
+            "hashes": [
+                "sha256:22f79cf8f1f509639330f93886acaece8ec5ac5e9600c3b981d33c34e8a42dfd",
+                "sha256:6dfea214b7c12efd689007abf9afa87a426586e9dbc051873ad2c8e535e2a1ac"
+            ],
+            "index": "pypi",
+            "version": "==4.1.4"
         },
         "wrapt": {
             "hashes": [
