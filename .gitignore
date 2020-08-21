@@ -1,3 +1,7 @@
+# Root static files
+staticfiles/*
+
+
 # VS code
 .vscode/
 
