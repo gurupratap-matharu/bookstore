@@ -7,13 +7,13 @@ verify_ssl = true
 autopep8 = "*"
 
 [packages]
-django = "==2.2.7"
+django = "*"
 psycopg2-binary = "==2.8.4"
 pylint = "*"
 django-crispy-forms = "==1.8.0"
-django-allauth = "==0.40.0"
+django-allauth = "*"
 pylint-django = "*"
-pillow = "==6.2.1"
+pillow = "*"
 stripe = "*"
 django-debug-toolbar = "==2.0"
 whitenoise = "==4.1.4"
@@ -21,4 +21,4 @@ gunicorn = "==19.9.0"
 dj-database-url = "==0.5.0"
 
 [requires]
-python_version = "3.8"
+python_version = "3.7"
