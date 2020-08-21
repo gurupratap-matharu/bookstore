@@ -4,12 +4,8 @@ services:
   web:
     build: .
     command: gunicorn bookstore_project.wsgi -b 0.0.0.0:8000
-    environment: 
-      - ENVIRONMENT=development
-      - SECRET_KEY=nq#osk$$vggb3z756w%h8%s*as%=5pduig9h0bo7eb6yub+3=)x
-      - DEBUG=1
-      - STRIPE_TEST_PUBLISHABLE_KEY=pk_test_tUaWXtnixlSAbpYm0JObaU0M00DeT1dMSi
-      - STRIPE_TEST_SECRET_KEY=sk_test_vcP1kclmdcfRhQ0Ww5BpOmTR00TvCbmOcj
+    env_file: 
+      - .env
     volumes: 
       - .:/code
     ports:
