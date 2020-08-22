@@ -1,1 +1,1 @@
-console.log('Javascript here!')
+$('.toast').toast('show')
