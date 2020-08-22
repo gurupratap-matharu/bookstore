@@ -21,7 +21,6 @@ class ContactPageView(FormView):
     success_url = '/'
 
     def form_valid(self, form):
-        logger.info('received valid contact form = %s', form)
         form.send_mail()
         return super().form_valid(form)
 
@@ -32,6 +31,5 @@ class FeedbackPageView(FormView):
     success_url = '/'
 
     def form_valid(self, form):
-        logger.info('Received valid feedback form = %s', form)
         form.send_mail()
-        return super().form_invalid(form)
+        return super().form_valid(form)
