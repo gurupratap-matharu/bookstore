@@ -12,8 +12,6 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/546230838a.js" crossorigin="anonymous"></script>
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
 
 </head>
 
@@ -21,7 +19,6 @@
     {% include '_header.html' %}
     {% include '_toast.html' %}
     <div class="container">
-        {% include '_alert.html' %}
         {% block content %}
         {% endblock content %}
     </div>
@@ -36,7 +33,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-    <script src="{% static 'js/base.js' %}"></script>
+    <script>$('.toast').toast('show')</script>
 </body>
 
 </html>
