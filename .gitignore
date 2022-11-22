@@ -1,6 +1,8 @@
 # Root static files
 staticfiles/*
 
+# Pyenv
+.python-version
 
 # VS code
 .vscode/

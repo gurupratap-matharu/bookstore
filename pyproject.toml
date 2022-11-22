@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "bookstore"
+version = "0.1.0"
+description = "An online bookstore"
+authors = ["Gurupratap Matharu <gurupratap.matharu@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django = "^4.1.3"
+psycopg2-binary = "^2.9.5"
+pylint = "^2.15.6"
+django-crispy-forms = "^1.14.0"
+django-allauth = "^0.51.0"
+pillow = "^9.3.0"
+stripe = "^5.0.0"
+whitenoise = "^6.2.0"
+gunicorn = "^20.1.0"
+dj-database-url = "^1.0.0"
+pre-commit = "^2.20.0"
+
+
+[tool.poetry.group.dev.dependencies]
+django-debug-toolbar = "^3.7.0"
+black = "^22.10.0"
+isort = "^5.10.1"
+bandit = "^1.7.4"
+safety = "^2.3.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
