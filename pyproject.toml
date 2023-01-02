@@ -15,7 +15,8 @@ pillow = "^9.3.0"
 stripe = "^5.0.0"
 whitenoise = "^6.2.0"
 gunicorn = "^20.1.0"
-dj-database-url = "^1.0.0"
+django-extensions = "^3.2.1"
+python-dotenv = "^0.21.0"
 
 
 [tool.poetry.group.dev.dependencies]
