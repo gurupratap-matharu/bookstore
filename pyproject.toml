@@ -25,7 +25,39 @@ isort = "^5.10.1"
 safety = "^2.3.2"
 flake8 = "^6.0.0"
 black = "^23.3.0"
+djlint = "^1.19.17"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+
+[tool.isort]
+profile = "black"
+skip = ["docs", "migrations"]
+known_django = "django"
+sections = "FUTURE,STDLIB,DJANGO,THIRDPARTY,FIRSTPARTY,LOCALFOLDER"
+
+[tool.black]
+exclude = '''
+/(
+  | migrations
+)/
+'''
+
+[tool.djlint]
+exclude=".venv,venv,.tox,.eggs,.git"
+extend_exclude=".custom"
+blank_line_before_tag="load,extends,include,block"
+blank_line_after_tag="load,extends,include,endblock"
+profile="django"
+max_line_length=120
+max_attribute_length=120
+use_gitignore=true
+format_attribute_template_tags=true
+
+[tool.djlint.css]
+indent_size=5
+
+[tool.djlint.js]
+indent_size=5
