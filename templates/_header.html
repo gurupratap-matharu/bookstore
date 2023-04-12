@@ -2,16 +2,16 @@
     <!-- Fixed navbar -->
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4\
      mb-3 bg-white border-bottom shadow-sm">
-        <a href="{% url 'home' %}" class="navbar-brand my-0 mr-md-auto font-weight-normal text-dark"><i
+        <a href="{% url 'pages:home' %}" class="navbar-brand my-0 mr-md-auto font-weight-normal text-dark"><i
                 class="fas fa-boxes fa-lg" aria-hidden="true"></i></a>
         <nav class="my-2 my-md-0 mr-md-3">
-            <a class="p-2 text-dark" href="{% url 'book_list' %}"><i class="fa fa-book fa-lg"
+            <a class="p-2 text-dark" href="{% url 'books:book_list' %}"><i class="fa fa-book fa-lg"
                     aria-hidden="true"></i></a>
-            <a class="p-2 text-dark" href="{% url 'about' %}"><i class="far fa-file-alt fa-lg"
+            <a class="p-2 text-dark" href="{% url 'pages:about' %}"><i class="far fa-file-alt fa-lg"
                     aria-hidden="true"></i></a>
-            <a class="p-2 text-dark" href="{% url 'contact' %}"><i class="fas fa-comment-alt fa-lg"
+            <a class="p-2 text-dark" href="{% url 'pages:contact' %}"><i class="fas fa-comment-alt fa-lg"
                     aria-hidden="true"></i></a>
-            <a class="p-2 text-dark" href="{% url 'feedback' %}"><i class="fas fa-feather-alt fa-lg"
+            <a class="p-2 text-dark" href="{% url 'pages:feedback' %}"><i class="fas fa-feather-alt fa-lg"
                     aria-hidden="true"></i></a>
             {% if user.is_authenticated %}
             <a class="p-2 text-dark" href="{% url 'account_logout' %}"><i class="fa fa-sign-out fa-lg"
