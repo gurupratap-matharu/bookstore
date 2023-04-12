@@ -4,8 +4,8 @@
 {% block title %}Home{% endblock title %}
 
 {% block content %}
-<h1>Homepage</h1>
-<form class="form-inline mt-2 mt-md-0" action="{% url 'search_results' %}" method="GET">
+<h1>Goodbooks</h1>
+<form class="form-inline mt-2 mt-md-0" action="{% url 'books:search_results' %}" method="GET">
     <input name="q" type="text" class="form-control mr-sm-2" placeholder="Search" aria-label="Search">
 </form>
 {% if user.is_authenticated %}
@@ -13,8 +13,8 @@
 <a href="{% url 'account_logout' %}">Log Out</a>
 {% else %}
 <p>You are not logged in.</p>
-<a href="{% url 'account_login' %}">Login</a>
-<a href="{% url 'account_signup' %}">Sign Up</a>
-<a href="{% provider_login_url 'github' %}">Sign Up with github</a>
+<a href="{% url 'account_login' %}" class="btn btn-outline-primary">Login</a>
+<a href="{% url 'account_signup' %}" class="btn btn-outline-primary">Sign Up</a>
+<a href="{% provider_login_url 'github' %}" class="btn btn-outline-primary">Sign Up with github</a>
 {% endif %}
 {% endblock content %}
