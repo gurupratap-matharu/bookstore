@@ -1,5 +1,6 @@
 # Root static files
 staticfiles/*
+static/
 
 # Pyenv
 .python-version
