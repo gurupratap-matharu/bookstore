@@ -17,16 +17,15 @@ whitenoise = "^6.2.0"
 gunicorn = "^20.1.0"
 django-extensions = "^3.2.1"
 python-dotenv = "^0.21.0"
-pylint-django = "^2.5.3"
 
 
 [tool.poetry.group.dev.dependencies]
 django-debug-toolbar = "^3.7.0"
 isort = "^5.10.1"
 safety = "^2.3.2"
-pylint = "^2.15.9"
 pre-commit = "^2.21.0"
-autopep8 = "^2.0.1"
+flake8 = "^6.0.0"
+black = "^23.3.0"
 
 [build-system]
 requires = ["poetry-core"]
