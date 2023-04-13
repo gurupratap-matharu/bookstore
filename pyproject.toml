@@ -26,6 +26,7 @@ safety = "^2.3.2"
 flake8 = "^6.0.0"
 black = "^23.3.0"
 djlint = "^1.19.17"
+bandit = "^1.7.5"
 
 [build-system]
 requires = ["poetry-core"]
