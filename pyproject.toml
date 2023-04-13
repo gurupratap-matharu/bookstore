@@ -46,15 +46,17 @@ exclude = '''
 '''
 
 [tool.djlint]
+indent=2
 exclude=".venv,venv,.tox,.eggs,.git"
-extend_exclude=".custom"
 blank_line_before_tag="load,extends,include,block"
 blank_line_after_tag="load,extends,include,endblock"
 profile="django"
 max_line_length=120
-max_attribute_length=120
+max_attribute_length=10
 use_gitignore=true
 format_attribute_template_tags=true
+format_css=true
+format_js=true
 
 [tool.djlint.css]
 indent_size=5
