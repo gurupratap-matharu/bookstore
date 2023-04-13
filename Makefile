@@ -61,7 +61,7 @@ lint: isort format
 	poetry run flake8 .
 
 test: check migrations-check
-	coverage run --source='.' manage.py test
+	coverage run manage.py test
 	coverage html
 
 security:
