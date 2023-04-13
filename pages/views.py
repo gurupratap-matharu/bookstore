@@ -9,18 +9,18 @@ logger = logging.getLogger(__name__)
 
 
 class HomePageView(TemplateView):
-    template_name = 'home.html'
+    template_name = "home.html"
 
 
 class AboutPageView(TemplateView):
-    template_name = 'about.html'
+    template_name = "about.html"
 
 
 class ContactPageView(SuccessMessageMixin, FormView):
     form_class = ContactForm
-    template_name = 'pages/contact.html'
-    success_url = '/'
-    success_message = 'Message sent successfully!'
+    template_name = "pages/contact.html"
+    success_url = "/"
+    success_message = "Message sent successfully!"
 
     def form_valid(self, form):
         form.send_mail()
@@ -29,9 +29,9 @@ class ContactPageView(SuccessMessageMixin, FormView):
 
 class FeedbackPageView(SuccessMessageMixin, FormView):
     form_class = FeedbackForm
-    template_name = 'pages/feedback.html'
-    success_url = '/'
-    success_message = 'Feedback sent successfully!'
+    template_name = "pages/feedback.html"
+    success_url = "/"
+    success_message = "Feedback sent successfully!"
 
     def form_valid(self, form):
         form.send_mail()
