@@ -12,7 +12,7 @@ class BookTests(TestCase):
         self.user = User.objects.create_user(
             username="reviewuser",
             email="reviewuser@email.com",
-            password="testpass123",
+            password="testpass123",  # nosec
         )
         self.special_permission = Permission.objects.get(codename="special_status")
 
@@ -38,7 +38,7 @@ class BookTests(TestCase):
         self.assertEqual(f"{self.book.price}", "25.00")
 
     def test_book_list_view_for_loggedin_user(self):
-        self.client.login(email="reviewuser@email.com", password="testpass123")
+        self.client.login(email="reviewuser@email.com", password="testpass123")  # nosec
         response = self.client.get(reverse("book_list"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "books/book_list.html")
@@ -54,7 +54,7 @@ class BookTests(TestCase):
         self.assertContains(response, "Log In")
 
     def test_book_detail_view_with_permissions(self):
-        self.client.login(email="reviewuser@email.com", password="testpass123")
+        self.client.login(email="reviewuser@email.com", password="testpass123")  # nosec
         self.user.user_permissions.add(self.special_permission)
         response = self.client.get(self.book.get_absolute_url())
         no_response = self.client.get("/books/12345/")
