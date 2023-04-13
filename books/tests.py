@@ -39,14 +39,14 @@ class BookTests(TestCase):
 
     def test_book_list_view_for_loggedin_user(self):
         self.client.login(email="reviewuser@email.com", password="testpass123")  # nosec
-        response = self.client.get(reverse("book_list"))
+        response = self.client.get(reverse("books:book_list"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "books/book_list.html")
         self.assertContains(response, "Harry Potter")
 
     def test_book_list_view_for_loggedout_user(self):
         self.client.logout()
-        response = self.client.get(reverse("book_list"))
+        response = self.client.get(reverse("books:book_list"))
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, "%s?next=/books/" % reverse("account_login"))
 

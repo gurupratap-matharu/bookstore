@@ -6,7 +6,7 @@ from .views import AboutPageView, HomePageView
 
 class HomepageTests(SimpleTestCase):
     def setUp(self):
-        url = reverse("home")
+        url = reverse("pages:home")
         self.response = self.client.get(url)
 
     def test_homepage_status_code(self):
@@ -16,7 +16,7 @@ class HomepageTests(SimpleTestCase):
         self.assertTemplateUsed(self.response, "home.html")
 
     def test_homepage_contains_correct_html(self):
-        self.assertContains(self.response, "Homepage")
+        self.assertContains(self.response, "Bookstore")
 
     def test_homepage_does_not_contain_incorrect_html(self):
         self.assertNotContains(self.response, "hi there! I should be on the page")
@@ -28,7 +28,7 @@ class HomepageTests(SimpleTestCase):
 
 class AboutPageTests(SimpleTestCase):
     def setUp(self):
-        url = reverse("about")
+        url = reverse("pages:about")
         self.response = self.client.get(url)
 
     def test_about_page_status_code(self):
