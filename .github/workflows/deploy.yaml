@@ -40,22 +40,22 @@ jobs:
             /home/veer/.local/bin/poetry install --verbose
 
             echo "Veer: collecting static..."
-            /home/veer/.pyenv/versions/falcon/bin/python manage.py collectstatic --noinput
+            /home/veer/.pyenv/versions/bookstore/bin/python manage.py collectstatic --noinput
 
             echo "Veer: showing migrations..."
-            /home/veer/.pyenv/versions/falcon/bin/python manage.py showmigrations
+            /home/veer/.pyenv/versions/bookstore/bin/python manage.py showmigrations
 
             echo "Veer: applying migrations..."
-            /home/veer/.pyenv/versions/falcon/bin/python manage.py migrate
+            /home/veer/.pyenv/versions/bookstore/bin/python manage.py migrate
 
             echo "Veer: running tests..."
-            /home/veer/.pyenv/versions/falcon/bin/python manage.py test --noinput -v 2
+            /home/veer/.pyenv/versions/bookstore/bin/python manage.py test --noinput -v 2
 
             echo "Veer: reloading daemon..."
             sudo systemctl daemon-reload
 
             echo "Veer: restarting gunicorn..."
-            sudo systemctl restart falcon-gunicorn.service
+            sudo systemctl restart bookstore-gunicorn.service
 
             echo "Veer: reloading nginx..."
             sudo nginx -s reload
