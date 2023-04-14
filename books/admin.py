@@ -3,18 +3,11 @@ from django.contrib import admin
 from .models import Book, Review
 
 
-class ReviewInline(admin.TabularInline):
-    model = Review
-
-
+@admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    inlines = [
-        ReviewInline,
-    ]
-    list_display = (
-        "title",
-        "price",
-    )
+    list_display = ("title", "price")
 
 
-admin.site.register(Book, BookAdmin)
+@admin.register(Review)
+class ReviewInline(admin.ModelAdmin):
+    list_display = ("book", "review")
