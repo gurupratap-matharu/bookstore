@@ -1,6 +1,7 @@
-# Root static files
+# Django
 staticfiles/*
 static/
+media/
 
 # Pyenv
 .python-version
