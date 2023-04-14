@@ -32,10 +32,12 @@
     {% include "_toast.html" %}
 
     <div class="container">
+      <main>
 
-      {% block content %}
-      {% endblock content %}
+        {% block content %}
+        {% endblock content %}
 
+      </main>
     </div>
     <!-- JavaScript -->
     <script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"
