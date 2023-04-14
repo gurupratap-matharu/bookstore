@@ -22,6 +22,7 @@ class Book(models.Model):
         permissions = [
             ("special_status", "Can read all books"),
         ]
+        ordering = ("-created_on",)
 
     def __str__(self) -> str:
         return self.title
