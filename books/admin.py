@@ -13,7 +13,6 @@ class BookAdmin(admin.ModelAdmin):
     ]
     list_display = (
         "title",
-        "author",
         "price",
     )
 
