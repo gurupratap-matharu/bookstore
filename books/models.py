@@ -8,10 +8,10 @@ from django.utils.translation import gettext_lazy as _
 
 class Book(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=500)
     description = models.TextField()
-    author = models.CharField(max_length=200)
-    price = models.DecimalField(max_digits=6, decimal_places=2)
+    author = models.CharField(max_length=500)
+    price = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True)
     cover = models.ImageField(upload_to="covers/", blank=True)
     link = models.URLField(verbose_name=_("Download Link"), blank=True, null=True)
 
