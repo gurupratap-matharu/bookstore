@@ -5,6 +5,7 @@ Django management command that triggers the scrapers.
 from django.core.management.base import BaseCommand
 
 from books.models import Book
+from books.scrapers.sedici import SediciScraper
 
 
 class Command(BaseCommand):
@@ -21,6 +22,7 @@ class Command(BaseCommand):
         self.stdout.write(self.style.HTTP_BAD_REQUEST(msg))
 
     def handle(self, *args, **options):
-        # TODO: Run scraper here
+        sedici = SediciScraper()
+        sedici.run()
         books = Book.objects.count()
         self.stdout.write(f"Books: {books}")
