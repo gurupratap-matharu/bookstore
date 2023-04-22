@@ -33,7 +33,7 @@ class BookModelTests(TestCase):
         book = Book.objects.first()
         max_length = book._meta.get_field("title").max_length  # type:ignore
 
-        self.assertEqual(max_length, 200)
+        self.assertEqual(max_length, 500)
 
     def test_books_are_ordered_by_created_date(self):
         Book.objects.all().delete()
