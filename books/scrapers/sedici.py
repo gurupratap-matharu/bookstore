@@ -8,6 +8,7 @@ logger = logging.getLogger(__name__)
 
 
 class SediciScraper(BaseScraper):
+    url = "http://sedici.unlp.edu.ar/discover?filtertype=type&filter_relational_operator=equals&filter=Libro&sort_by=dc.date.accessioned_dt&order=desc"
     item_urls = set()
 
     def run(self):
@@ -15,10 +16,13 @@ class SediciScraper(BaseScraper):
 
         logger.info("running scraper...")
 
+        # 1. Build BS4 object
         bs = self.get_soup(self.url)
 
+        # 2. Get list of all item urls (books)
         item_urls = self.get_items(bs)
 
+        # 3. Retrieve each item from its url and save to DB
         for item_url in item_urls:
             item = self.get_item(item_url)
             self.save_item_to_db(item=item)
@@ -104,6 +108,3 @@ class SediciScraper(BaseScraper):
         item_data["base_search_net"] = unquote_plus(base_search_net_raw_url)
 
         return item_data
-
-    def save_item_to_db(self, item):
-        logger.info("saving item %s to db..." % item)

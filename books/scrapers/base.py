@@ -12,8 +12,9 @@ class BaseScraper:
     Abstract class that implements the basic interface of a scraper.
     """
 
-    def __init__(self, url):
-        self.url = url
+    url = None
+
+    def __init__(self):
         self.base_url = self.build_base_url(self.url)
 
     def run(self):
@@ -50,3 +51,20 @@ class BaseScraper:
         """
 
         return f"{self.base_url}{path}"
+
+    def get_items(self, bs):
+        """
+        Interface to get a list of urls for all the items on the page.
+        """
+
+        return NotImplementedError("Subclass should implement this method...")
+
+    def get_item(self, url):
+        """
+        Interface method to get a single item from its url.
+        """
+
+        return NotImplementedError("Subclass should implement this method...")
+
+    def save_item_to_db(self, item):
+        logger.info("saving item %s to db..." % item)
