@@ -13,12 +13,11 @@ django-crispy-forms = "^1.14.0"
 django-allauth = "^0.51.0"
 pillow = "^9.3.0"
 stripe = "^5.0.0"
-whitenoise = "^6.2.0"
 gunicorn = "^20.1.0"
 django-extensions = "^3.2.1"
 python-dotenv = "^0.21.0"
 factory-boy = "^3.2.1"
-feedparser = "^6.0.10"
+beautifulsoup4 = "^4.12.2"
 
 
 [tool.poetry.group.dev.dependencies]
