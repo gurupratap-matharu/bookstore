@@ -164,6 +164,45 @@ DATABASES = {
     }
 }
 
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "simple": {"format": "%(levelname)s %(message)s"},
+        "verbose": {
+            "format": "%(levelname)s %(asctime)s %(module)s:%(lineno)d %(message)s"
+        },
+        "elegant": {
+            "format": ("%(levelname)-8s" "(%(module)s:%(lineno)d) %(message)s"),
+            "datefmt": "%Y-%m-%d %H:%M:%S",
+        },
+    },
+    "handlers": {
+        "console": {
+            "level": "DEBUG",
+            "class": "logging.StreamHandler",
+            "formatter": "elegant",
+        },
+        "file": {
+            "level": "WARNING",
+            "class": "logging.FileHandler",
+            "filename": "./django-falcon.log",
+            "formatter": "elegant",
+        },
+    },
+    "root": {
+        "handlers": ["console"],
+        "level": "INFO",
+        "formatter": "elegant",
+    },
+    "loggers": {
+        "django": {
+            "level": os.getenv("DJANGO_LOG_LEVEL", default="INFO"),
+            "handlers": ["console"],
+            "propagate": False,
+        },
+    },
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
