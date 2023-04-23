@@ -1,6 +1,9 @@
+import json
 import logging
 import time
 from urllib.parse import unquote_plus
+
+from bookstore_project.decorators import timeit
 
 from .base import BaseScraper
 
@@ -8,34 +11,42 @@ logger = logging.getLogger(__name__)
 
 
 class SediciScraper(BaseScraper):
-    url = "http://sedici.unlp.edu.ar/discover?filtertype=type&filter_relational_operator=equals&filter=Libro&sort_by=dc.date.accessioned_dt&order=desc"
+    # url = "http://sedici.unlp.edu.ar/discover?filtertype=type&filter_relational_operator=equals&filter=Libro&sort_by=dc.date.accessioned_dt&order=desc"
+
+    # This 40 results per page seems to be the fastest
+    url = "http://sedici.unlp.edu.ar/discover?search-result=true&query=&current-scope=&filtertype_0=type&filter_relational_operator_0=equals&filter_0=Libro&sort_by=dc.date.accessioned_dt&order=desc&rpp=40"
+
     item_urls = set()
+    items_data = list()
 
+    @timeit
     def run(self):
-        start = time.time()
+        logger.info("running sedici scraper...")
 
-        logger.info("running scraper...")
+        url = self.url
 
-        # 1. Build BS4 object
-        bs = self.get_soup(self.url)
+        while url:
+            # Get list of all item urls (books)
+            bs = self.get_soup(url)
+            self.get_items(bs)
 
-        # 2. Get list of all item urls (books)
-        item_urls = self.get_items(bs)
+            # Update url to next page
+            url = self.get_next_page_link(bs)
 
-        # 3. Retrieve each item from its url and save to DB
-        for item_url in item_urls:
-            item = self.get_item(item_url)
-            self.save_item_to_db(item=item)
+        # Save all item urls to a file
+        self.save_item_urls()
 
-        end = time.time()
+        # Retrieve each item from its url and save to DB
+        # for item_url in item_urls:
+        #     item = self.get_item(item_url)
+        #     self.save_item_to_db(item=item)
 
-        logger.info("All done! took %.2f seconds!" % (end - start))
+        # Save all items data to a json file
+        # self.save_items_data()
 
         return self.item_urls
 
     def get_items(self, bs):
-        logger.info("fetching items...")
-
         links = bs.find("ul", {"class": "ds-artifact-list"}).find_all("a")
 
         for link in links:
@@ -107,4 +118,47 @@ class SediciScraper(BaseScraper):
         item_data["google_scholar"] = unquote_plus(google_scholar_raw_url)
         item_data["base_search_net"] = unquote_plus(base_search_net_raw_url)
 
+        self.items_data.append(item_data)
+
         return item_data
+
+    def get_next_page_link(self, bs=None):
+        """
+        Extract the link to the next page if any.
+        """
+
+        try:
+            next_page_path = bs.find(class_="next-page-link").a.attrs.get("href")
+            next_page_link = self.build_full_url(next_page_path, leading_slash=True)
+            logger.info("next_page_link: %s" % next_page_link)
+
+        except AttributeError:
+            next_page_link = ""
+            logger.info("📃 No next page exists...")
+
+        return next_page_link
+
+    def save_item_urls(self):
+        """
+        Write all item urls to a simple text file.
+        """
+
+        logger.info("📝 writing item urls to file...")
+
+        filename = "sedici_item_urls.txt"
+
+        with open(filename, "w") as f:
+            for line in self.item_urls:
+                f.write(f"{line}\n")
+
+    def save_items_data(self):
+        """
+        Write all items (books) data to a local file for later perusal
+        """
+
+        logger.info("📝 writing items data to file...")
+
+        filename = "sedici_items.json"
+
+        with open(filename, "w") as f:
+            f.write(json.dumps(self.items_data))
