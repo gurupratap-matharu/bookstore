@@ -1,5 +1,6 @@
 import json
 import logging
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from urllib.parse import unquote_plus
 
@@ -52,10 +53,19 @@ class SediciScraper(BaseScraper):
         self.save_item_urls()
 
         # Retrieve each item from its url and save to DB
-        for item_url in self.item_urls:
-            item = self.get_item(item_url)
-            self.save_item_to_db(item=item)
 
+        # WARNING: VERY COMPLICATED CODE
+        # ENTERING THREADED CODE
+        threads = []
+
+        with ThreadPoolExecutor(max_workers=20) as executor:
+            for url in self.item_urls:
+                threads.append(executor.submit(self.get_and_save_item, url))
+
+            for task in as_completed(threads):
+                logger.info(task.result())
+
+        # EXITING THREADED CODE
         # Save all items data to a json file
         self.save_items_data()
 
@@ -133,6 +143,11 @@ class SediciScraper(BaseScraper):
         self.items_data.append(item_data)
 
         return item_data
+
+    def get_and_save_item(self, url):
+        item = self.get_item(url)
+        obj = self.save_item_to_db(item=item)
+        return obj
 
     def get_next_page_link(self, bs=None):
         """
