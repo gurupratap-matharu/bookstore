@@ -13,10 +13,19 @@ CURRENT_DIR = Path(__file__).resolve().parent
 
 
 class SediciScraper(BaseScraper):
-    # url = "http://sedici.unlp.edu.ar/discover?filtertype=type&filter_relational_operator=equals&filter=Libro&sort_by=dc.date.accessioned_dt&order=desc"
+    # url = (
+    #     "http://sedici.unlp.edu.ar/discover?"
+    #     "filtertype=type&filter_relational_operator=equals"
+    #     "&filter=Libro&sort_by=dc.date.accessioned_dt&order=desc"
+    # )
 
     # This 40 results per page seems to be the fastest
-    url = "http://sedici.unlp.edu.ar/discover?search-result=true&query=&current-scope=&filtertype_0=type&filter_relational_operator_0=equals&filter_0=Libro&sort_by=dc.date.accessioned_dt&order=desc&rpp=40"
+    url = (
+        "http://sedici.unlp.edu.ar/discover"
+        "?search-result=true&query=&current-scope=&filtertype_0=type"
+        "&filter_relational_operator_0=equals&filter_0=Libro"
+        "&sort_by=dc.date.accessioned_dt&order=desc&rpp=40"
+    )
 
     item_urls = set()
     items_data = list()
@@ -42,7 +51,7 @@ class SediciScraper(BaseScraper):
 
         # Retrieve each item from its url and save to DB
         for item_url in self.item_urls:
-            item = self.get_item(item_url)
+            _ = self.get_item(item_url)
             # self.save_item_to_db(item=item)
 
         # Save all items data to a json file
