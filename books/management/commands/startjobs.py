@@ -12,7 +12,6 @@ from apscheduler.triggers.cron import CronTrigger
 from django_apscheduler.jobstores import DjangoJobStore
 from django_apscheduler.models import DjangoJobExecution
 
-from books.models import Book
 from books.scrapers.sedici import SediciScraper
 
 logger = logging.getLogger(__name__)

@@ -49,7 +49,7 @@ class SediciScraper(BaseScraper):
 
         # TODO: Remove these two lines and use the loop above
         # For now lets take the 40 books and try to download them
-        
+
         bs = self.get_soup(url)
         self.get_items(bs)
 
