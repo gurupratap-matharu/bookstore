@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount.providers.google",
     "allauth.socialaccount.providers.github",
     "django_extensions",
+    "django_apscheduler",
     "debug_toolbar",
     # Local
     "users.apps.UsersConfig",
