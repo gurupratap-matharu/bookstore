@@ -3,6 +3,7 @@ import logging
 from pathlib import Path
 from urllib.parse import unquote_plus
 
+from books.models import Book
 from bookstore_project.decorators import timeit
 
 from .base import BaseScraper
@@ -58,8 +59,8 @@ class SediciScraper(BaseScraper):
 
         # Retrieve each item from its url and save to DB
         for item_url in self.item_urls:
-            _ = self.get_item(item_url)
-            # self.save_item_to_db(item=item)
+            item = self.get_item(item_url)
+            self.save_item_to_db(item=item)
 
         # Save all items data to a json file
         self.save_items_data()
@@ -190,3 +191,19 @@ class SediciScraper(BaseScraper):
             value = ""
 
         return value
+
+    def save_item_to_db(self, item):
+        """
+        Saves an item (book) to the DB if it doesn't exists.
+        If the object already exists do nothing simply fetch and return it to avoid duplication.
+        """
+
+        obj, created = Book.objects.get_or_create(
+            title=item["title"],
+            description=item["description"],
+            link=item["download_link"],
+        )
+
+        logger.info("created:%s item:%s..." % (created, obj))
+
+        return obj

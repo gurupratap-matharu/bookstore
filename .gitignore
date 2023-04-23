@@ -3,6 +3,10 @@ staticfiles/*
 static/
 media/
 
+# Scraper data
+books/scrapers/*.txt
+books/scrapers/*.json
+
 # Pyenv
 .python-version
 
