@@ -207,10 +207,12 @@ class SediciScraper(BaseScraper):
         If the object already exists do nothing simply fetch and return it to avoid duplication.
         """
 
+        title = item.get("title")[:499]
+        description = item.get("description")
+        link = item.get("download_link")
+
         obj, created = Book.objects.get_or_create(
-            title=item["title"],
-            description=item["description"],
-            link=item["download_link"],
+            title=title, description=description, link=link
         )
 
         logger.info("created:%s item:%s..." % (created, obj))
