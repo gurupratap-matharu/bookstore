@@ -47,7 +47,7 @@ class Command(BaseCommand):
         scheduler.add_job(
             SediciScraper().run,
             trigger="interval",
-            minutes=2,
+            days=1,
             id="The Sedici Scraper",
             max_instances=1,
             replace_existing=True,
