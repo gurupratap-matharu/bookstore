@@ -1,6 +1,6 @@
 import json
 import logging
-import time
+from pathlib import Path
 from urllib.parse import unquote_plus
 
 from bookstore_project.decorators import timeit
@@ -8,6 +8,8 @@ from bookstore_project.decorators import timeit
 from .base import BaseScraper
 
 logger = logging.getLogger(__name__)
+
+CURRENT_DIR = Path(__file__).resolve().parent
 
 
 class SediciScraper(BaseScraper):
@@ -18,6 +20,8 @@ class SediciScraper(BaseScraper):
 
     item_urls = set()
     items_data = list()
+    item_urls_filename = str(CURRENT_DIR / "sedici_item_urls.txt")
+    item_data_filename = str(CURRENT_DIR / "sedici_items.json")
 
     @timeit
     def run(self):
@@ -37,12 +41,12 @@ class SediciScraper(BaseScraper):
         self.save_item_urls()
 
         # Retrieve each item from its url and save to DB
-        # for item_url in item_urls:
-        #     item = self.get_item(item_url)
-        #     self.save_item_to_db(item=item)
+        for item_url in self.item_urls:
+            item = self.get_item(item_url)
+            # self.save_item_to_db(item=item)
 
         # Save all items data to a json file
-        # self.save_items_data()
+        self.save_items_data()
 
         return self.item_urls
 
@@ -57,10 +61,12 @@ class SediciScraper(BaseScraper):
 
         return self.item_urls
 
+    @timeit
     def get_item(self, item_url):
         logger.info("fetching item: %s" % item_url)
 
         item_data = dict()
+
         bs = self.get_soup(url=item_url)
         item = bs.find(class_="item-summary-view-metadata")
 
@@ -85,18 +91,13 @@ class SediciScraper(BaseScraper):
         description_tag = item.find(class_="simple-item-view-description")
         item_data["description"] = description_tag.p.get_text().strip()
 
-        def get_metadata_text(item, klass):
-            return (
-                item.find(class_=klass).find(class_="metadata-value").get_text().strip()
-            )
-
-        item_data["language"] = get_metadata_text(item, "language")
-        item_data["publisher"] = get_metadata_text(item, "publisher")
-        item_data["origin"] = get_metadata_text(item, "originInfo")
-        item_data["isbn"] = get_metadata_text(item, "identifier-isbn")
-        item_data["subjects"] = get_metadata_text(item, "subject-materias")
-        item_data["created_since"] = get_metadata_text(item, "date-accessioned")
-        item_data["available_since"] = get_metadata_text(item, "date-available")
+        item_data["language"] = self.extract(item, "language")
+        item_data["publisher"] = self.extract(item, "publisher")
+        item_data["origin"] = self.extract(item, "originInfo")
+        item_data["isbn"] = self.extract(item, "identifier-isbn")
+        item_data["subjects"] = self.extract(item, "subject-materias")
+        item_data["created_since"] = self.extract(item, "date-accessioned")
+        item_data["available_since"] = self.extract(item, "date-available")
 
         thumbnail_path = item.find(class_="image-link").img.attrs.get("src")
         item_data["thumbnail"] = self.build_full_url(thumbnail_path)
@@ -145,9 +146,7 @@ class SediciScraper(BaseScraper):
 
         logger.info("📝 writing item urls to file...")
 
-        filename = "sedici_item_urls.txt"
-
-        with open(filename, "w") as f:
+        with open(self.item_urls_filename, "w") as f:
             for line in self.item_urls:
                 f.write(f"{line}\n")
 
@@ -158,7 +157,20 @@ class SediciScraper(BaseScraper):
 
         logger.info("📝 writing items data to file...")
 
-        filename = "sedici_items.json"
-
-        with open(filename, "w") as f:
+        with open(self.item_data_filename, "w") as f:
             f.write(json.dumps(self.items_data))
+
+    def extract(self, item, klass):
+        """
+        Helper method to pull out common info for an item.
+        """
+
+        try:
+            value = (
+                item.find(class_=klass).find(class_="metadata-value").get_text().strip()
+            )
+
+        except AttributeError:
+            value = ""
+
+        return value
