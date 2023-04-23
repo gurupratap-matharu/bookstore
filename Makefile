@@ -71,12 +71,12 @@ security:
 ci: lint security test
 	
 reload:
-	echo "Reloading daemon..."
-	sudo systemctl daemon-reload
-	echo "Reloading gunicorn..."
-	sudo systemctl restart bookstore-gunicorn
-	echo "Reloading scheduler..."
-	sudo systemctl restart bookstore-scheduler
-	echo "Reloading nginx..."
-	sudo nginx -s reload
-	echo "All done! 💅💫💖"
+	@echo "Reloading daemon..."
+	@sudo systemctl daemon-reload
+	@echo "Reloading gunicorn..."
+	@sudo systemctl restart bookstore-gunicorn
+	@echo "Reloading scheduler..."
+	@sudo systemctl restart bookstore-scheduler
+	@echo "Reloading nginx..."
+	@sudo nginx -s reload
+	@echo "All done! 💅💫💖"
