@@ -40,19 +40,13 @@ class SediciScraper(BaseScraper):
 
         url = self.url
 
-        # while url:
-        #     # Get list of all item urls (books)
-        #     bs = self.get_soup(url)
-        #     self.get_items(bs)
+        while url:
+            # Get all item (books) urls from a page
+            bs = self.get_soup(url)
+            self.get_items(bs)
 
-        #     # Update url to next page
-        #     url = self.get_next_page_link(bs)
-
-        # TODO: Remove these two lines and use the loop above
-        # For now lets take the 40 books and try to download them
-
-        bs = self.get_soup(url)
-        self.get_items(bs)
+            # Update url to next page
+            url = self.get_next_page_link(bs)
 
         # Save all item urls to a file
         self.save_item_urls()
