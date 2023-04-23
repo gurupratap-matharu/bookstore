@@ -80,3 +80,22 @@ reload:
 	@echo "Reloading nginx..."
 	@sudo nginx -s reload
 	@echo "All done! 💅💫💖"
+
+status:
+	@echo "Nginx"
+	@sudo systemctl status nginx
+
+	@echo "Gunicorn Socket"
+	@sudo systemctl status bookstore-gunicorn.socket
+	
+	@echo "Gunicorn Service"
+	@sudo systemctl status bookstore-gunicorn.service
+	
+	@echo "Scheduler Service"
+	@sudo systemctl status bookstore-scheduler.service
+
+logs:
+	sudo journalctl -fu bookstore-gunicorn.service
+
+logs-scheduler:
+	sudo journalctl -fu bookstore-scheduler.service
