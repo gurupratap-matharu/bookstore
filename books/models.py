@@ -13,7 +13,9 @@ class Book(models.Model):
     author = models.CharField(max_length=500)
     price = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True)
     cover = models.ImageField(upload_to="covers/", blank=True)
-    link = models.URLField(verbose_name=_("Download Link"), blank=True, null=True)
+    link = models.URLField(
+        verbose_name=_("Download Link"), blank=True, null=True, max_length=500
+    )
 
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
