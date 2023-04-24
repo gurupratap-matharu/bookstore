@@ -254,6 +254,12 @@ STATICFILES_FINDERS = [
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
+# django extensions
+SHELL_PLUS_IMPORTS = (
+    "import json",
+    "from books.scrapers.sedici import SediciScraper",
+)
+
 STRIPE_TEST_PUBLISHABLE_KEY = os.getenv("STRIPE_TEST_PUBLISHABLE_KEY")
 STRIPE_TEST_SECRET_KEY = os.getenv("STRIPE_TEST_SECRET_KEY")
 
