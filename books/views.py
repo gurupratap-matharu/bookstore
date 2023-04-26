@@ -8,6 +8,7 @@ class BookListView(ListView):
     model = Book
     context_object_name = "book_list"
     template_name = "books/book_list.html"
+    paginate_by = 9
 
 
 class BookDetailView(DetailView):
