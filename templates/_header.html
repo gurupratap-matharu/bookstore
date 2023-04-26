@@ -37,21 +37,21 @@
                  data-bs-toggle="dropdown"
                  aria-expanded="false">Profile</a>
               <ul class="dropdown-menu">
-                <li>
-                  <a class="dropdown-item"
-                     href="{% url 'account_login' %}">Login</a>
-                </li>
-                <li>
-                  <a class="dropdown-item"
-                     href="{% url 'account_signup' %}">Signup</a>
-                </li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
-                <li>
-                  <a class="dropdown-item"
-                     href="{% url 'account_logout' %}">Logout</a>
-                </li>
+                {% if user.is_authenticated %}
+                  <li>
+                    <a class="dropdown-item"
+                       href="{% url 'account_logout' %}">Logout</a>
+                  </li>
+                {% else %}
+                  <li>
+                    <a class="dropdown-item"
+                       href="{% url 'account_login' %}">Login</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item"
+                       href="{% url 'account_signup' %}">Signup</a>
+                  </li>
+                {% endif %}
               </ul>
             </li>
           </ul>
