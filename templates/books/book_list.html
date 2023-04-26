@@ -5,29 +5,12 @@
 {% endblock title %}
 
 {% block content %}
-  <section class="py-5 text-center container">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Album example</h1>
-        <p class="lead text-body-secondary">
-          Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.
-        </p>
-        <p>
-          <a href="#" class="btn btn-primary my-2">Main call to action</a>
-          <a href="#" class="btn btn-secondary my-2">Secondary action</a>
-        </p>
-      </div>
-    </div>
-  </section>
-  {% if not perms.books.special_status %}
-    <a href="{% url 'orders' %}" class="btn btn-success">Purchase All Books</a>
-  {% endif %}
   <div class="album py-5">
     <div class="container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         {% for book in book_list %}
           <div class="col">
-            <div class="card shadow-sm">
+            <div class="card h-100 shadow-sm">
               {% if book.cover %}
                 <img src="{{ book.cover.url }}" alt="{{ book.title }}" width="100%" height="225" class="bd-placeholder-img card-img-top" />
               {% else %}
@@ -45,13 +28,10 @@
               {% endif %}
               <div class="card-body">
                 <p class="card-text">{{ book.title }}</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <a type="button" href="{{ book.get_absolute_url }}" class="btn btn-sm btn-outline-secondary">View</a>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-body-secondary">{{ book.created_on }}</small>
-                </div>
+              </div>
+              <div class="card-footer bg-white d-flex justify-content-between">
+                <small class="text-body-secondary mt-1">{{ book.created_on }}</small>
+                <a type="button" href="{{ book.get_absolute_url }}" class="btn btn-sm btn-outline-primary">View</a>
               </div>
             </div>
           </div>
