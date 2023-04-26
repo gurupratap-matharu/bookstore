@@ -1,12 +1,18 @@
 {% extends '_base.html' %}
+
 {% load static %}
+
 {% load socialaccount %}
-{% block title %}Home{% endblock title %}
+
+{% block title %}
+  Home
+{% endblock title %}
 
 {% block content %}
-<h1>Goodbooks</h1>
-<form class="form-inline mt-2 mt-md-0" action="{% url 'books:search_results' %}" method="GET">
-    <input name="q" type="text" class="form-control mr-sm-2" placeholder="Search" aria-label="Search">
-</form>
-
+  <div class="d-flex justify-content-center">
+    <h1>Bookstore</h1>
+  </div>
+  <form class="form-inline mt-2 mt-md-0" action="{% url 'books:search_results' %}" method="get">
+    <input name="q" type="text" class="form-control form-control-lg mr-sm-2" placeholder="Search" aria-label="Search">
+  </form>
 {% endblock content %}
