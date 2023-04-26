@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <title>
 
       {% block title %}
@@ -11,25 +11,20 @@
       {% endblock title %}
 
     </title>
-    <link rel="shortcut icon"
-          type="image/png"
-          href="{% static 'favicon.ico' %}"/>
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}" />
     <!-- CSS -->
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link href="{% static 'assets/css/bootstrap.min.css' %}"
           rel="stylesheet"
           integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
-          crossorigin="anonymous"/>
+          crossorigin="anonymous" />
     <!-- Font Awesome Icons -->
-    <script src="https://kit.fontawesome.com/546230838a.js"
-            crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/546230838a.js" crossorigin="anonymous"></script>
     <script src="{% static 'assets/js/htmx/htmx.min.js' %}"></script>
   </head>
   <body>
 
     {% include "_header.html" %}
-    {% include "_toast.html" %}
 
     <div class="container">
       <main>
@@ -47,9 +42,6 @@
       document.body.addEventListener('htmx:configRequest', (event) => {
            event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
       })
-    </script>
-    <script>
-      $('.toast').toast('show')
     </script>
   </body>
 </html>
