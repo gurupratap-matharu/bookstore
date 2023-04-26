@@ -12,7 +12,20 @@
   <div class="d-flex justify-content-center">
     <h1>Bookstore</h1>
   </div>
-  <form class="form-inline mt-2 mt-md-0" action="{% url 'books:search_results' %}" method="get">
-    <input name="q" type="text" class="form-control form-control-lg mr-sm-2" placeholder="Search" aria-label="Search">
-  </form>
+  <form method="get" action="{% url 'books:search_results' %}">
+    <div class="d-flex justify-content-center">
+      <input id="autoComplete"
+             name="q"
+             type="search"
+             dir="ltr"
+             spellcheck="false"
+             autocorrect="off"
+             autocomplete="off"
+             autocapitalize="off"
+             maxlength="2048"
+             tabindex="1"
+             aria-label="Search">
+    </div>
+  </input>
+</form>
 {% endblock content %}
