@@ -26,9 +26,9 @@ class Command(BaseCommand):
         )
         folder = static / "assets" / "index"
         folder.mkdir(parents=True, exist_ok=True)
-        
+
         index_path = folder / "books.json"
-        
+
         self.success(f"🔍 Building search index at {index_path}...")
 
         books = list(Book.objects.values_list("title", flat=True))
