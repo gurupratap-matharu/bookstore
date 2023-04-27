@@ -73,9 +73,9 @@ ci: lint security test
 reload:
 	@echo "Reloading daemon..."
 	@sudo systemctl daemon-reload
-	@echo "Reloading gunicorn..."
+	@echo "Reloading bookstore gunicorn..."
 	@sudo systemctl restart bookstore-gunicorn
-	@echo "Reloading scheduler..."
+	@echo "Reloading bookstore scheduler..."
 	@sudo systemctl restart bookstore-scheduler
 	@echo "Reloading nginx..."
 	@sudo nginx -s reload
@@ -85,13 +85,13 @@ status:
 	@echo "Nginx"
 	@sudo systemctl status nginx
 
-	@echo "Gunicorn Socket"
+	@echo "Bookstore Gunicorn Socket"
 	@sudo systemctl status bookstore-gunicorn.socket
 	
-	@echo "Gunicorn Service"
+	@echo "Bookstore Gunicorn Service"
 	@sudo systemctl status bookstore-gunicorn.service
 	
-	@echo "Scheduler Service"
+	@echo "Bookstore Scheduler Service"
 	@sudo systemctl status bookstore-scheduler.service
 
 logs:
