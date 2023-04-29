@@ -1,12 +1,25 @@
-{% extends '_base.html' %}
+{% extends "_base.html" %}
+
 {% load crispy_forms_tags %}
-{% block title %}Feedback{% endblock title %}
+
+{% block title %}
+  Feedback | Bookstore
+{% endblock title %}
 
 {% block content %}
-<p class="display-4">Feedback</p>
-<form action="" method="post">
-    {% csrf_token %}
-    {{ form|crispy }}
-    <button type="submit" class="btn btn-light btn-block">Send</button>
-</form>
+  <div class="card border-0">
+    <div class="card-header bg-white border-0">
+      <h3>Feedback</h3>
+    </div>
+    <div class="card-body">
+      <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <div class="d-flex justify-content-end mt-3">
+          <a href="{% url 'pages:home' %}" class="btn btn-light me-3">Cancel</a>
+          <button type="submit" class="btn btn-success">Send</button>
+        </div>
+      </form>
+    </div>
+  </div>
 {% endblock content %}
