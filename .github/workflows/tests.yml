@@ -1,0 +1,76 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Tests
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11"]
+        poetry-version: ["1.2.2"]
+        database: [postgres]
+        os: [ubuntu-latest]
+
+    steps:
+      - name: Checkout git repo
+        uses: actions/checkout@v3
+
+      - name: Add environment variables to .env
+        run: |
+          echo DEBUG=1 >> .env
+          echo DJANGO_ALLOWED_HOSTS=* >> .env
+          echo DATABASE_NAME=bookstore >> .env
+          echo DATABASE_USER=bookstore >> .env
+          echo DATABASE_PASSWORD=bookstore >> .env
+          echo DATABASE_HOST=localhost >> .env
+          echo SECRET_KEY=sEcReTKeYtORuNTeSts >> .env
+
+      - name: Setup postgres database
+        uses: harmon758/postgresql-action@v1
+        if: matrix.database == 'postgres'
+        with:
+          postgresql version: "14.6"
+          postgresql db: "bookstore"
+          postgresql user: "bookstore"
+          postgresql password: "bookstore"
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install Poetry ${{ matrix.poetry-version }}
+        uses: abatilo/actions-poetry@v2.1.6
+        with:
+          poetry-version: ${{ matrix.poetry-version }}
+
+      - name: Install dependencies
+        run: poetry install
+
+      - name: Run checks
+        run: poetry run python manage.py check
+
+      - name: Run tests
+        run: poetry run coverage run --source='.' manage.py test -v 2
+
+      - name: Generate xml report
+        run: poetry run coverage xml
+
+      - name: Upload coverage to codecov
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage.xml
+          flags: unittests
+          name: Bookstore coverage
+          verbose: true
