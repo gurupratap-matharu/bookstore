@@ -60,6 +60,9 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "bookstore_project.urls"
 
+INTERNAL_IPS = [
+    "127.0.0.1",  # <- Debug toolbar needs this
+]
 
 # crispy forms template pack
 CRISPY_TEMPLATE_PACK = "bootstrap4"
@@ -67,10 +70,12 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 # tell django to use our custom user model for authentication
 AUTH_USER_MODEL = "users.CustomUser"
 
+# sites framework
 SITE_ID = 1
 
 # django-allauth config
 ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
@@ -83,7 +88,16 @@ ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
 
 LOGIN_REDIRECT_URL = reverse_lazy("pages:home")
-DEFAULT_FROM_EMAIL = "admin@bookstore.com"
+
+# Email settings
+DEFAULT_FROM_EMAIL = "admin@bichoraro.com.ar"
+DEFAULT_TO_EMAIL = "gurupratap.matharu@gmail.com"
+SERVER_EMAIL = "django@bichoraro.com.ar"
+RECIPIENT_LIST = ["gurupratap.matharu@gmail.com", "veerplaying@gmail.com"]
+ADMINS = [
+    ("Gurupratap", "gurupratap.matharu@gmail.com"),
+    ("Veer", "veerplaying@gmail.com"),
+]
 
 SOCIALACCOUNT_PROVIDERS = {
     "google": {
@@ -148,6 +162,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "bookstore_project.wsgi.application"
 
+
+CSRF_TRUSTED_ORIGINS = ["https://*.bichoraro.com.ar", "https://*.127.0.0.1"]
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
@@ -265,12 +281,14 @@ STRIPE_LIVE_PUBLISHABLE_KEY = os.getenv("STRIPE_LIVE_PUBLISHABLE_KEY")
 STRIPE_LIVE_SECRET_KEY = os.getenv("STRIPE_LIVE_SECRET_KEY")
 
 if not DEBUG:
-    EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-    EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
-    EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
-    EMAIL_HOST = "smtp.gmail.com"
-    EMAIL_PORT = 587
-    EMAIL_USE_TLS = True
+    # Use console emails until final deployment
+
+    # EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+    # EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+    # EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+    # EMAIL_HOST = "smtp.gmail.com"
+    # EMAIL_PORT = 587
+    # EMAIL_USE_TLS = True
 
     CSRF_COOKIE_SECURE = True
     X_FRAME_OPTIONS = "DENY"
