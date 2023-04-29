@@ -7,40 +7,12 @@
 {% endblock title %}
 
 {% block content %}
-  <div class="card mb-3">
-    <div class="row g-0">
-      <div class="col-md-4">
-        {% if book.cover %}
-          <img src="{{ book.cover.url }}" alt="{{ book.title }}" width="100%" height="225" class="bd-placeholder-img card-img-top" />
-        {% else %}
-          <svg class="bd-placeholder-img card-img-top"
-               width="100%"
-               height="225"
-               xmlns="http://www.w3.org/2000/svg"
-               role="img"
-               aria-label="Placeholder: Thumbnail"
-               preserveAspectRatio="xMidYMid slice"
-               focusable="false">
-            <title>{{ book.title }}</title>
-            <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">Cover</text>
-          </svg>
-        {% endif %}
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title">{{ book.title }}</h5>
-          <p class="card-text">{{ book.description }}</p>
-          <p class="card-text d-flex justify-content-between">
-            <small class="text-body-secondary">{{ book.updated_on }}</small>
-            <a class="btn btn-primary" href={{ book.link }} target="_blank" download>Download</a>
-            {% comment %} <button class="btn btn-success" hx-get="{{ book.link }}">
-              Click Me!
-              <img class="htmx-indicator" width="25" height="25" src="{% static 'assets/svg-loaders/grid.svg' %}">
-            </button> {% endcomment %}
-          </p>
-        </div>
-      </div>
+  <div class="card mt-3">
+    <div class="card-header">Featured</div>
+    <div class="card-body">
+      <h5 class="card-title">{{ book.title }}</h5>
+      <p class="card-text">{{ book.description }}</p>
+      <a href="{{ book.link }}" class="btn btn-primary" target="_blank">Download</a>
     </div>
   </div>
-  <div id="parent-div"></div>
 {% endblock content %}
