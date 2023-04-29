@@ -1,14 +1,19 @@
-As a user, I would like to:
+### Project
 
-- Know the title of an book
-- Read a description of the book
-- Know when an book was published
-- Have a clickable URL so I can download the book
-- See an image of the book so I can scroll to look
-  for my favorite books
-- See the book category
+- Improve the favicon of the project
+- Configure Htmx correctly
+- Add a footer to the project
+- Remove Stripe, permissions, orders and other code that is not needed
 
-As a developer, I would like to:
+### Books
 
-- Have a uniquely identifiable attribute for each book
-  so I can avoid duplicating books in the database
+- Improve the book detail view layout
+- Add django taggit to the project
+- Show simple recommendations with taggit on book detail page
+- Show tags in home page like youtube does in top bar
+
+### Scraper
+
+- Configure scraper to run slowly and after longer durations (like every week)
+- Scrape other university portals as well
+- Scrape other items from sedici like journals, thesis, etc
