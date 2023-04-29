@@ -16,7 +16,7 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS(msg))
 
     def handle(self, *args, **options):
-        secs = random.randint(5, 10)
+        secs = random.randint(5, 10)  # nosec
 
         self.success(f"😴 Veer taking a nap for {secs} seconds...")
 
