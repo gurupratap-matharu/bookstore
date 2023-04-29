@@ -9,24 +9,25 @@
 {% endblock title %}
 
 {% block content %}
-  <div class="d-flex justify-content-center">
-    <h1>Bookstore</h1>
-  </div>
-  <form method="get" action="{% url 'books:search_results' %}">
+  <div class="min-vh-100">
     <div class="d-flex justify-content-center">
-      <input id="autoComplete"
-             name="q"
-             type="search"
-             dir="ltr"
-             spellcheck="false"
-             autocorrect="off"
-             autocomplete="off"
-             autocapitalize="off"
-             autofocus="autofocus"
-             maxlength="2048"
-             tabindex="1"
-             aria-label="Search">
+      <h1>Bookstore</h1>
     </div>
-  </input>
-</form>
+    <form method="get" action="{% url 'books:search_results' %}">
+      <div class="d-flex justify-content-center">
+        <input id="autoComplete"
+               name="q"
+               type="search"
+               dir="ltr"
+               spellcheck="false"
+               autocorrect="off"
+               autocomplete="off"
+               autocapitalize="off"
+               autofocus="autofocus"
+               maxlength="2048"
+               tabindex="1"
+               aria-label="Search">
+      </div>
+    </form>
+  </div>
 {% endblock content %}
