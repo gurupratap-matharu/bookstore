@@ -196,19 +196,19 @@ LOGGING = {
         "console": {
             "level": "DEBUG",
             "class": "logging.StreamHandler",
-            "formatter": "elegant",
+            "formatter": "verbose",
         },
         "file": {
             "level": "WARNING",
             "class": "logging.FileHandler",
             "filename": "./django-falcon.log",
-            "formatter": "elegant",
+            "formatter": "verbose",
         },
     },
     "root": {
         "handlers": ["console"],
         "level": "INFO",
-        "formatter": "elegant",
+        "formatter": "verbose",
     },
     "loggers": {
         "django": {
