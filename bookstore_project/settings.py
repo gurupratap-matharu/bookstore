@@ -185,7 +185,8 @@ LOGGING = {
     "formatters": {
         "simple": {"format": "%(levelname)s %(message)s"},
         "verbose": {
-            "format": "%(levelname)s %(asctime)s %(module)s:%(lineno)d %(message)s"
+            "format": "%(levelname)s %(asctime)s %(module)s:%(lineno)d %(message)s",
+            "datefmt": "%Y-%m-%d %H:%M:%S",
         },
         "elegant": {
             "format": ("%(levelname)-8s" "(%(module)s:%(lineno)d) %(message)s"),

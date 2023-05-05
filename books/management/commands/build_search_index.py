@@ -1,9 +1,12 @@
 import json
+import logging
 
 from django.conf import settings
 from django.core.management.base import BaseCommand
 
 from books.models import Book
+
+logger = logging.getLogger(__name__)
 
 
 class Command(BaseCommand):
@@ -14,12 +17,6 @@ class Command(BaseCommand):
 
     help = "Exports items data in a json format to build autocomplete search"
 
-    def success(self, msg):
-        self.stdout.write(self.style.SUCCESS(msg))
-
-    def danger(self, msg):
-        self.stdout.write(self.style.HTTP_BAD_REQUEST(msg))
-
     def handle(self, *args, **options):
         static = (
             settings.STATICFILES_DIRS[0] if settings.DEBUG else settings.STATIC_ROOT
@@ -29,10 +26,10 @@ class Command(BaseCommand):
 
         index_path = folder / "books.json"
 
-        self.success(f"🔍 Building search index at {index_path}...")
+        logger.info("🔍 Building search index at %s..." % index_path)
 
         books = list(Book.objects.values_list("title", flat=True))
         with open(index_path, "w") as f:
             f.write(json.dumps(books))
 
-        self.success("All Done 💅🏻✨💫")
+        logger.info("All Done 💅🏻✨💫")
