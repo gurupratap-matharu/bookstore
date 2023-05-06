@@ -11,23 +11,11 @@
         {% for book in book_list %}
           <div class="col">
             <div class="card h-100 shadow-sm">
-              {% if book.cover %}
-                <img src="{{ book.cover.url }}" alt="{{ book.title }}" width="100%" height="225" class="bd-placeholder-img card-img-top" />
-              {% else %}
-                <svg class="bd-placeholder-img card-img-top"
-                     width="100%"
-                     height="225"
-                     xmlns="http://www.w3.org/2000/svg"
-                     role="img"
-                     aria-label="Placeholder: Thumbnail"
-                     preserveAspectRatio="xMidYMid slice"
-                     focusable="false">
-                  <title>{{ book.title }}</title>
-                  <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">Cover</text>
-                </svg>
-              {% endif %}
               <div class="card-body">
-                <p class="card-text">{{ book.title }}</p>
+                <h6 class="card-title">{{ book.title|truncatechars:100 }}</h6>
+                {% comment "Tip" %}Use the subtitle below for tags|authors|keywords{% endcomment %}
+                {% comment %} <p class="card-subtitle mb-2 text-body-secondary">Card subtitle</p> {% endcomment %}
+                <p class="card-text">{{ book.description|truncatechars:120 }}</p>
               </div>
               <div class="card-footer bg-white d-flex justify-content-between">
                 <small class="text-body-secondary mt-1">{{ book.created_on }}</small>
