@@ -14,6 +14,7 @@ books/scrapers/*.json
 .vscode/
 
 
+
 db.sqlite3
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -153,3 +154,6 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+
+# Mac
+.DS_Store
