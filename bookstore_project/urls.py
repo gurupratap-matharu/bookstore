@@ -5,8 +5,9 @@ from django.contrib.sitemaps.views import sitemap
 from django.urls import include, path
 
 from books.sitemaps import BookSitemap
+from pages.sitemaps import StaticViewSitemap
 
-sitemaps = {"books": BookSitemap}
+sitemaps = {"books": BookSitemap, "static": StaticViewSitemap}
 
 
 urlpatterns = [
